@@ -1,0 +1,24 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\dev\\ue\\engine\\plugins\\marketplace\\refractorsoftware\\foundation\\refractcommon\\source\\refractcommon\\private\\detail\\refractmobilequalityhelpers.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\dev\\ue\\engine\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\unrealed\\sharedpch.unrealed.cpp20.h.pch",
+        "Includes": [
+            "c:\\dev\\ue\\engine\\plugins\\marketplace\\refractorsoftware\\foundation\\refractcommon\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\refractcommon\\definitions.refractcommon.h",
+            "c:\\dev\\ue\\engine\\plugins\\marketplace\\refractorsoftware\\foundation\\refractcommon\\source\\refractcommon\\private\\detail\\refractmobilequalityhelpers.h",
+            "c:\\dev\\ue\\engine\\source\\runtime\\applicationcore\\public\\hal\\platformframepacer.h",
+            "c:\\dev\\ue\\engine\\source\\runtime\\applicationcore\\public\\genericplatform\\genericplatformframepacer.h",
+            "c:\\dev\\ue\\engine\\plugins\\marketplace\\refractorsoftware\\foundation\\refractcommon\\source\\refractcommon\\public\\settings\\refractplatformsettings.h",
+            "c:\\dev\\ue\\engine\\source\\runtime\\developersettings\\public\\engine\\developersettingsbackedbycvars.h",
+            "c:\\dev\\ue\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\developersettings\\uht\\developersettingsbackedbycvars.generated.h",
+            "c:\\dev\\ue\\engine\\source\\runtime\\developersettings\\public\\engine\\platformsettings.h",
+            "c:\\dev\\ue\\engine\\source\\runtime\\developersettings\\public\\engine\\platformsettingsmanager.h",
+            "c:\\dev\\ue\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\developersettings\\uht\\platformsettingsmanager.generated.h",
+            "c:\\dev\\ue\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\developersettings\\uht\\platformsettings.generated.h",
+            "c:\\dev\\ue\\engine\\plugins\\marketplace\\refractorsoftware\\foundation\\refractcommon\\intermediate\\build\\win64\\unrealeditor\\inc\\refractcommon\\uht\\refractplatformsettings.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

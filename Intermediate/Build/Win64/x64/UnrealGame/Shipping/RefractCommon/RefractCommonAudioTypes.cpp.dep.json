@@ -1,0 +1,15 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\dev\\ue\\engine\\plugins\\marketplace\\refractorsoftware\\foundation\\refractcommon\\source\\refractcommon\\private\\types\\refractcommonaudiotypes.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\dev\\ue\\engine\\intermediate\\build\\win64\\x64\\unrealgame\\shipping\\engine\\sharedpch.engine.cpp20.h.pch",
+        "Includes": [
+            "c:\\dev\\ue\\engine\\plugins\\marketplace\\refractorsoftware\\foundation\\refractcommon\\intermediate\\build\\win64\\x64\\unrealgame\\shipping\\refractcommon\\definitions.refractcommon.h",
+            "c:\\dev\\ue\\engine\\plugins\\marketplace\\refractorsoftware\\foundation\\refractcommon\\source\\refractcommon\\public\\types\\refractcommonaudiotypes.h",
+            "c:\\dev\\ue\\engine\\plugins\\marketplace\\refractorsoftware\\foundation\\refractcommon\\intermediate\\build\\win64\\unrealgame\\inc\\refractcommon\\uht\\refractcommonaudiotypes.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

@@ -1,0 +1,36 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.RefractCommon.cpp.obj": [
+			"RefractCommon.init.gen.cpp.obj",
+			"RefractCommonAudioMixEffectsSubsystem.gen.cpp.obj",
+			"RefractCommonAudioSettings.gen.cpp.obj",
+			"RefractCommonAudioTypes.gen.cpp.obj",
+			"RefractCommonFunctionLibrary.gen.cpp.obj",
+			"RefractCommonGameplayCueManagerInterface.gen.cpp.obj",
+			"RefractCommonLocalUserSettings.gen.cpp.obj",
+			"RefractCommonScalabilityTypes.gen.cpp.obj",
+			"RefractPerformanceStatTypes.gen.cpp.obj",
+			"RefractPlatformEmulationSettings.gen.cpp.obj",
+			"RefractPlatformSettings.gen.cpp.obj",
+			"PerModuleInline.gen.cpp.obj",
+			"RefractMobileQualityHelpers.cpp.obj",
+			"RefractCommonLocalUserSettings.cpp.obj",
+			"RefractCommonGameplayCueManagerInterface.cpp.obj",
+			"RefractCommon.cpp.obj",
+			"RefractCommonAssetUtility.cpp.obj",
+			"RefractCommonFunctionLibrary.cpp.obj",
+			"RefractDefinitions.cpp.obj",
+			"RefractCommonAudioSettings.cpp.obj",
+			"RefractPlatformSettings.cpp.obj",
+			"RefractCommonAudioMixEffectsSubsystem.cpp.obj",
+			"RefractCommonAudioTypes.cpp.obj",
+			"RefractCommonLocalUserSettingsDelegates.cpp.obj",
+			"RefractCommonScalabilityTypes.cpp.obj",
+			"RefractPerformanceStatTypes.cpp.obj",
+			"RefractLogging.cpp.obj",
+			"RefractMacroTools.cpp.obj",
+			"RefractPlatformEmulationSettings.cpp.obj"
+		]
+	}
+}
