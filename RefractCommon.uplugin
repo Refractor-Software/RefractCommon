@@ -19,6 +19,11 @@
 			"Name": "RefractCommon",
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "RefractCommonUI",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
 		}
 	],
 	"Plugins": [
@@ -40,6 +45,10 @@
 		},
 		{
 			"Name": "GameSettings",
+			"Enabled": true
+		},
+		{
+			"Name": "ModelViewViewModel",
 			"Enabled": true
 		},
 		{
