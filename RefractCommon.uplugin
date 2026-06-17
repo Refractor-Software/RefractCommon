@@ -24,6 +24,11 @@
 			"Name": "RefractCommonUI",
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "RefractCommonGameSettings",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
 		}
 	],
 	"Plugins": [

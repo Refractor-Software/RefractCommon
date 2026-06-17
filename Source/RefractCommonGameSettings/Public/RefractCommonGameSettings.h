@@ -3,12 +3,11 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
 
-class FRefractCommonUIModule : public IModuleInterface
+class FRefractCommonGameSettingsModule : public IModuleInterface
 {
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
 };
-
-REFRACTCOMMONUI_API DECLARE_LOG_CATEGORY_EXTERN(LogRefractCommonUI, All, All);

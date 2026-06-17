@@ -22,6 +22,7 @@ public class RefractCommonUI : ModuleRules
 		]);
 
 		PrivateDependencyModuleNames.AddRange([
+			"RefractCommon",
 			"CoreUObject",
 			"Engine",
 			"Slate",

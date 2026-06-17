@@ -16,3 +16,5 @@ void FRefractCommonUIModule::ShutdownModule()
 #undef LOCTEXT_NAMESPACE
 	
 IMPLEMENT_MODULE(FRefractCommonUIModule, RefractCommonUI)
+
+DEFINE_LOG_CATEGORY(LogRefractCommonUI);
