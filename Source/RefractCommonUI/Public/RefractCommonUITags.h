@@ -1,0 +1,20 @@
+// SPDX-License-Identifier: Zlib
+// Copyright (C) William Pimentel-Tonche
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "NativeGameplayTags.h"
+
+#define UE_API REFRACTCOMMONUI_API
+
+UE_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_UI_Event);
+UE_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_UI_Event_ShowMenu);
+UE_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_UI_Layer);
+UE_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_UI_Layer_Game);
+UE_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_UI_Layer_GameMenu);
+UE_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_UI_Layer_GameModal);
+UE_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_UI_Layer_SystemMenu);
+UE_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_UI_Layer_SystemModal);
+
+#undef UE_API

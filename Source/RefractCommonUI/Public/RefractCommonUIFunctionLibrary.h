@@ -22,6 +22,7 @@ class URefractCommonUIFunctionLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 
+	static UCommonInputSubsystem* GetCommonInputSubsystem(const ULocalPlayer* Context);
 	static UCommonInputSubsystem* GetCommonInputSubsystem(const UWidget* Context);
 
 public:
@@ -36,6 +37,14 @@ public:
 
 	UFUNCTION(Category = "User Interface", BlueprintCallable, BlueprintPure = false, BlueprintCosmetic)
 	static UE_API void PlayCommonButtonClickSound(const UCommonButtonBase* Button);
+
+	UFUNCTION(Category = "User Interface", BlueprintCallable, BlueprintPure = false, BlueprintCosmetic, meta = (WorldContext = "Context"))
+	static UE_API UPARAM(DisplayName = "Suspend Token") FName SuspendInput(APlayerController* Player, FName Reason);
+	static UE_API FName SuspendInput(const ULocalPlayer* Player, FName Reason);
+
+	UFUNCTION(Category = "User Interface", BlueprintCallable, BlueprintPure = false, BlueprintCosmetic, meta = (WorldContext = "Context"))
+	static UE_API void ResumeInput(APlayerController* Player, FName Token);
+	static UE_API void ResumeInput(ULocalPlayer* Player, FName Token);
 };
 
 #undef UE_API

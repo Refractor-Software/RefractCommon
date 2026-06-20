@@ -25,6 +25,10 @@ class URefractDiscreteRotator : public URefractRotatorBase
 public:
 	UE_API URefractDiscreteRotator(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 
+	/** The command to execute when this rotator rotates. */
+	UPROPERTY(Category = "Rotator", EditAnywhere, meta = (BaseStruct = "/Script/RefractCommonUI.RefractCommonWidgetCommand"))
+	FInstancedStruct RotationCommand;
+
 	/** Replaces the option list and resets selection to index 0. */
 	UFUNCTION(Category = "Rotator", BlueprintCallable, BlueprintPure = false, BlueprintCosmetic)
 	UE_API void SetOptions(const TArray<FText>& InOptions);
