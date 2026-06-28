@@ -26,15 +26,15 @@ class ARefractCommonHUD : public AHUD
 {
 	GENERATED_BODY()
 
-public:
-	//~ BEGIN AActor
-	UE_API virtual void BeginPlay() override;
-	UE_API virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
-	//~ END AActor
+// public:
+	// //~ BEGIN AActor
+	// UE_API virtual void BeginPlay() override;
+	// UE_API virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+	// //~ END AActor
 
-private:
-	/** Resolves the layout subsystem for this HUD's owning local player, or null if unavailable. */
-	UE_API class URefractCommonGameLayoutSubsystem* GetLayoutSubsystem() const;
+// private:
+	// /** Resolves the layout subsystem for this HUD's owning local player, or null if unavailable. */
+	// UE_API class URefractCommonGameLayoutSubsystem* GetLayoutSubsystem() const;
 };
 
 #undef UE_API

@@ -98,143 +98,143 @@ class URefractCommonGameLayoutSubsystem : public ULocalPlayerSubsystem
 {
 	GENERATED_BODY()
 
-public:
-	//~ BEGIN USubsystem
-	UE_API virtual void Initialize(FSubsystemCollectionBase& Collection) override;
-	UE_API virtual void Deinitialize() override;
-	//~ END USubsystem
+// public:
+	// //~ BEGIN USubsystem
+	// UE_API virtual void Initialize(FSubsystemCollectionBase& Collection) override;
+	// UE_API virtual void Deinitialize() override;
+	// //~ END USubsystem
 
-	// --- Controller lifetime (called by the HUD; the sole channel for layout lifecycle) ---
+	// // --- Controller lifetime (called by the HUD; the sole channel for layout lifecycle) ---
 
-	/** A PlayerController is now available for this player. Tears down any stale layout and builds a fresh one. */
-	UE_API void NotifyControllerReady(APlayerController* PlayerController);
+	// /** A PlayerController is now available for this player. Tears down any stale layout and builds a fresh one. */
+	// UE_API void NotifyControllerReady(APlayerController* PlayerController);
 
-	/** The PlayerController is going away. Flushes input suspensions and removes the layout. */
-	UE_API void NotifyControllerGone(ERefractLayoutTeardownReason Reason = ERefractLayoutTeardownReason::Destroyed);
+	// /** The PlayerController is going away. Flushes input suspensions and removes the layout. */
+	// UE_API void NotifyControllerGone(ERefractLayoutTeardownReason Reason = ERefractLayoutTeardownReason::Destroyed);
 
-	/** Fires whenever a fresh layout is created (initial bind and each rebind after travel). Re-cache layer references here. */
-	FOnLayoutReady OnLayoutReady;
+	// /** Fires whenever a fresh layout is created (initial bind and each rebind after travel). Re-cache layer references here. */
+	// FOnLayoutReady OnLayoutReady;
 
-	// --- Layout access (validity proven by construction; never hands out a stale pointer) ---
+	// // --- Layout access (validity proven by construction; never hands out a stale pointer) ---
 
-	/** Runs Fn only if a live layout exists. No-op otherwise. Preferred read accessor. */
-	UE_API void WithLayout(TFunctionRef<void(URefractCommonGameLayout&)> Fn) const;
+	// /** Runs Fn only if a live layout exists. No-op otherwise. Preferred read accessor. */
+	// UE_API void WithLayout(TFunctionRef<void(URefractCommonGameLayout&)> Fn) const;
 
-	/** Returns true and sets OutLayout iff a live layout exists. */
-	UE_API bool TryGetLayout(URefractCommonGameLayout*& OutLayout) const;
+	// /** Returns true and sets OutLayout iff a live layout exists. */
+	// UE_API bool TryGetLayout(URefractCommonGameLayout*& OutLayout) const;
 
-	/** True if a layout is currently bound to a live controller. */
-	UE_API bool HasLayout() const;
+	// /** True if a layout is currently bound to a live controller. */
+	// UE_API bool HasLayout() const;
 
-	// --- Pushing widgets (typed, total result; templates forward into the layout's primitives) ---
+	// // --- Pushing widgets (typed, total result; templates forward into the layout's primitives) ---
 
-	/** Push a widget of type T onto a layer. Returns a total EPushResult; OutWidget is set only on Pushed. */
-	template <typename T = UCommonActivatableWidget>
-	ERefractLayerPushResult PushWidget(FGameplayTag LayerTag, UClass* WidgetClass, T*& OutWidget)
-	{
-		static_assert(TIsDerivedFrom<T, UCommonActivatableWidget>::IsDerived,
-			"Only CommonActivatableWidgets can be used here");
+	// /** Push a widget of type T onto a layer. Returns a total EPushResult; OutWidget is set only on Pushed. */
+	// template <typename T = UCommonActivatableWidget>
+	// ERefractLayerPushResult PushWidget(FGameplayTag LayerTag, UClass* WidgetClass, T*& OutWidget)
+	// {
+		// static_assert(TIsDerivedFrom<T, UCommonActivatableWidget>::IsDerived,
+			// "Only CommonActivatableWidgets can be used here");
 
-		OutWidget = nullptr;
-		URefractCommonGameLayout* Layout = nullptr;
-		if (!TryGetLayout(Layout)) return ERefractLayerPushResult::NoLayout;
-		if (!WidgetClass)          return ERefractLayerPushResult::InvalidClass;
+		// OutWidget = nullptr;
+		// URefractCommonGameLayout* Layout = nullptr;
+		// if (!TryGetLayout(Layout)) return ERefractLayerPushResult::NoLayout;
+		// if (!WidgetClass)          return ERefractLayerPushResult::InvalidClass;
 
-		OutWidget = Layout->PushWidgetToLayerStack<T>(LayerTag, WidgetClass);
-		return OutWidget ? ERefractLayerPushResult::Pushed : ERefractLayerPushResult::NoSuchLayer;
-	}
+		// OutWidget = Layout->PushWidgetToLayerStack<T>(LayerTag, WidgetClass);
+		// return OutWidget ? ERefractLayerPushResult::Pushed : ERefractLayerPushResult::NoSuchLayer;
+	// }
 
-	/** Convenience overload when the returned widget isn't needed. */
-	template <typename T = UCommonActivatableWidget>
-	ERefractLayerPushResult PushWidget(FGameplayTag LayerTag, UClass* WidgetClass)
-	{
-		T* Unused = nullptr;
-		return PushWidget<T>(LayerTag, WidgetClass, Unused);
-	}
+	// /** Convenience overload when the returned widget isn't needed. */
+	// template <typename T = UCommonActivatableWidget>
+	// ERefractLayerPushResult PushWidget(FGameplayTag LayerTag, UClass* WidgetClass)
+	// {
+		// T* Unused = nullptr;
+		// return PushWidget<T>(LayerTag, WidgetClass, Unused);
+	// }
 
-	/**
-	 * Async-load WidgetClass then push it. Optionally suspends input until the load completes
-	 * (resumed on completion or cancel). StateFunc is invoked at Initialize / AfterPush / Canceled.
-	 * Returns the streaming handle (may be invalid if there's no layout to push into).
-	 */
-	template <typename T = UCommonActivatableWidget>
-	TSharedPtr<FStreamableHandle> PushWidgetAsync(
-		FGameplayTag LayerTag,
-		bool bSuspendInputUntilComplete,
-		TSoftClassPtr<UCommonActivatableWidget> WidgetClass,
-		TFunction<void(ERefractAsyncLayerState, T*)> StateFunc = [](ERefractAsyncLayerState, T*){})
-	{
-		static_assert(TIsDerivedFrom<T, UCommonActivatableWidget>::IsDerived,
-			"Only CommonActivatableWidgets can be used here");
+	// /**
+	 // * Async-load WidgetClass then push it. Optionally suspends input until the load completes
+	 // * (resumed on completion or cancel). StateFunc is invoked at Initialize / AfterPush / Canceled.
+	 // * Returns the streaming handle (may be invalid if there's no layout to push into).
+	 // */
+	// template <typename T = UCommonActivatableWidget>
+	// TSharedPtr<FStreamableHandle> PushWidgetAsync(
+		// FGameplayTag LayerTag,
+		// bool bSuspendInputUntilComplete,
+		// TSoftClassPtr<UCommonActivatableWidget> WidgetClass,
+		// TFunction<void(ERefractAsyncLayerState, T*)> StateFunc = [](ERefractAsyncLayerState, T*){})
+	// {
+		// static_assert(TIsDerivedFrom<T, UCommonActivatableWidget>::IsDerived,
+			// "Only CommonActivatableWidgets can be used here");
 
-		return PushWidgetAsyncImpl(LayerTag, bSuspendInputUntilComplete, MoveTemp(WidgetClass),
-			[StateFunc](ERefractAsyncLayerState State, UCommonActivatableWidget* W)
-			{
-				StateFunc(State, Cast<T>(W));
-			});
-	}
+		// return PushWidgetAsyncImpl(LayerTag, bSuspendInputUntilComplete, MoveTemp(WidgetClass),
+			// [StateFunc](ERefractAsyncLayerState State, UCommonActivatableWidget* W)
+			// {
+				// StateFunc(State, Cast<T>(W));
+			// });
+	// }
 
-	// --- Popping / removing widgets ---
+	// // --- Popping / removing widgets ---
 
-	/** Pop the top widget of the given layer's stack. No-op if no layout / no such layer / empty. */
-	UE_API void PopTopWidget(FGameplayTag LayerTag);
+	// /** Pop the top widget of the given layer's stack. No-op if no layout / no such layer / empty. */
+	// UE_API void PopTopWidget(FGameplayTag LayerTag);
 
-	/** Remove a specific widget from whichever layer currently holds it. */
-	UE_API void RemoveWidget(UCommonActivatableWidget* Widget);
+	// /** Remove a specific widget from whichever layer currently holds it. */
+	// UE_API void RemoveWidget(UCommonActivatableWidget* Widget);
 
-	// --- Input suspension (single source of truth; per-player, flushed on teardown) ---
+	// // --- Input suspension (single source of truth; per-player, flushed on teardown) ---
 
-	/**
-	 * Suspend all UI input, returning a unique token. The caller must hold the token and pass it
-	 * to ResumeInput. Prefer SuspendInputScoped unless suspend and resume occur on different events.
-	 */
-	UE_API FName SuspendInput(FName Reason);
+	// /**
+	 // * Suspend all UI input, returning a unique token. The caller must hold the token and pass it
+	 // * to ResumeInput. Prefer SuspendInputScoped unless suspend and resume occur on different events.
+	 // */
+	// UE_API FName SuspendInput(FName Reason);
 
-	/** Resume a previously suspended token. Safe to call with NAME_None or an already-cleared token. */
-	UE_API void ResumeInput(FName Token);
+	// /** Resume a previously suspended token. Safe to call with NAME_None or an already-cleared token. */
+	// UE_API void ResumeInput(FName Token);
 
-	/** RAII form: suspends on construction, resumes when the returned handle is destroyed. */
-	UE_API FRefractScopedInputSuspension SuspendInputScoped(FName Reason);
+	// /** RAII form: suspends on construction, resumes when the returned handle is destroyed. */
+	// UE_API FRefractScopedInputSuspension SuspendInputScoped(FName Reason);
 
-	/** Resume every outstanding suspension. Called automatically on controller teardown. */
-	UE_API void FlushAllInputSuspensions();
+	// /** Resume every outstanding suspension. Called automatically on controller teardown. */
+	// UE_API void FlushAllInputSuspensions();
 
-protected:
-	/** Z-order used when adding the layout to the player screen. */
-	UPROPERTY(EditDefaultsOnly, Category = "Layout")
-	int32 LayoutZOrder = 1000;
+// protected:
+	// /** Z-order used when adding the layout to the player screen. */
+	// UPROPERTY(EditDefaultsOnly, Category = "Layout")
+	// int32 LayoutZOrder = 1000;
 
-	/** The layout widget class to instantiate for this player. Set in project/subsystem defaults. */
-	UPROPERTY(EditDefaultsOnly, Category = "Layout")
-	TSoftClassPtr<URefractCommonGameLayout> LayoutClass;
+	// /** The layout widget class to instantiate for this player. Set in project/subsystem defaults. */
+	// UPROPERTY(EditDefaultsOnly, Category = "Layout")
+	// TSoftClassPtr<URefractCommonGameLayout> LayoutClass;
 
-private:
-	/** Non-template core of the async push: all streaming/input/lifecycle plumbing, compiled once. */
-	UE_API TSharedPtr<FStreamableHandle> PushWidgetAsyncImpl(
-		FGameplayTag LayerTag,
-		bool bSuspendInputUntilComplete,
-		TSoftClassPtr<UCommonActivatableWidget> WidgetClass,
-		TFunction<void(ERefractAsyncLayerState, UCommonActivatableWidget*)> StateFunc);
+// private:
+	// /** Non-template core of the async push: all streaming/input/lifecycle plumbing, compiled once. */
+	// UE_API TSharedPtr<FStreamableHandle> PushWidgetAsyncImpl(
+		// FGameplayTag LayerTag,
+		// bool bSuspendInputUntilComplete,
+		// TSoftClassPtr<UCommonActivatableWidget> WidgetClass,
+		// TFunction<void(ERefractAsyncLayerState, UCommonActivatableWidget*)> StateFunc);
 
-	/** Applies/clears a single input-type filter for every input type, for one token. */
-	void ApplyInputFilter(FName Token, bool bSuspend);
+	// /** Applies/clears a single input-type filter for every input type, for one token. */
+	// void ApplyInputFilter(FName Token, bool bSuspend);
 
-	/** Subscribed to the layout's transition delegate so the layout stays ignorant of input. */
-	void HandleLayerTransitioning(UCommonActivatableWidgetContainerBase* Layer, bool bIsTransitioning);
+	// /** Subscribed to the layout's transition delegate so the layout stays ignorant of input. */
+	// void HandleLayerTransitioning(UCommonActivatableWidgetContainerBase* Layer, bool bIsTransitioning);
 
-	UPROPERTY(Transient)
-	TObjectPtr<URefractCommonGameLayout> RootLayout;
+	// UPROPERTY(Transient)
+	// TObjectPtr<URefractCommonGameLayout> RootLayout;
 
-	/** All currently-active suspension tokens. Flushed on teardown so none leak across travel. */
-	UPROPERTY(Transient)
-	TSet<FName> ActiveSuspensions;
+	// /** All currently-active suspension tokens. Flushed on teardown so none leak across travel. */
+	// UPROPERTY(Transient)
+	// TSet<FName> ActiveSuspensions;
 
-	/** Per-player suspension counter - guarantees token uniqueness even for identical reasons. */
-	int32 SuspensionCounter = 0;
+	// /** Per-player suspension counter - guarantees token uniqueness even for identical reasons. */
+	// int32 SuspensionCounter = 0;
 
-	/** Tokens issued by the layout's transition handler (begin/end span two events; not RAII-able). */
-	UPROPERTY(Transient)
-	TArray<FName> TransitionSuspendTokens;
+	// /** Tokens issued by the layout's transition handler (begin/end span two events; not RAII-able). */
+	// UPROPERTY(Transient)
+	// TArray<FName> TransitionSuspendTokens;
 };
 
 #undef UE_API

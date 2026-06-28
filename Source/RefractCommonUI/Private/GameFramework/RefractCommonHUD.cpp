@@ -12,7 +12,7 @@
  *            transitions anyway, so the trouble of resetting the game layout is not worth just recreating it on level reload.
  *            There will also be a dedicated level loading screen system, likely with a basic transition level and UMG loading screen.
  */
-
+#if 0
 URefractCommonGameLayoutSubsystem* ARefractCommonHUD::GetLayoutSubsystem() const
 {
 	if (const APlayerController* PC = GetOwningPlayerController())
@@ -55,3 +55,4 @@ void ARefractCommonHUD::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 	Super::EndPlay(EndPlayReason);
 }
+#endif
